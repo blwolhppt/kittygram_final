@@ -1,26 +1,32 @@
-#  Как работать с репозиторием финального задания
+# Kittygram — социальная сеть для обмена фотографиями любимых питомцев.
 
-## Что нужно сделать
+## Ссылка на соцсеть Kittygram: https://blwol.sytes.net/
 
-Настроить запуск проекта Kittygram в контейнерах и CI/CD с помощью GitHub Actions
+## Стек проекта:
 
-## Как проверить работу с помощью автотестов
+- Python 3.9
+- Django
+- Gunicorn
+- Nginx
+- Docker
+- Django REST Framework
 
-В корне репозитория создайте файл tests.yml со следующим содержимым:
-```yaml
-repo_owner: ваш_логин_на_гитхабе
-kittygram_domain: полная ссылка (https://доменное_имя) на ваш проект Kittygram
-taski_domain: полная ссылка (https://доменное_имя) на ваш проект Taski
-dockerhub_username: ваш_логин_на_докерхабе
+## Запуск проекта:
+- Клонируем репозиторий:
+```angular2html
+git clone git@github.com:blwolhppt/kittygram_final.git
+```
+- Запускаем:
+```angular2html
+sudo docker compose -f docker-compose.production.yml up
+```
+- Выполняем сбор статики и миграции:
+```angular2html
+sudo docker compose -f docker-compose.production.yml exec backend python manage.py migrate
+
+sudo docker compose -f docker-compose.production.yml exec backend python manage.py collectstatic
+
+sudo docker compose -f docker-compose.production.yml exec backend cp -r /app/collected_static/. /static/static/
 ```
 
-Скопируйте содержимое файла `.github/workflows/main.yml` в файл `kittygram_workflow.yml` в корневой директории проекта.
-
-Для локального запуска тестов создайте виртуальное окружение, установите в него зависимости из backend/requirements.txt и запустите в корневой директории проекта `pytest`.
-
-## Чек-лист для проверки перед отправкой задания
-
-- Проект Taski доступен по доменному имени, указанному в `tests.yml`.
-- Проект Kittygram доступен по доменному имени, указанному в `tests.yml`.
-- Пуш в ветку main запускает тестирование и деплой Kittygram, а после успешного деплоя вам приходит сообщение в телеграм.
-- В корне проекта есть файл `kittygram_workflow.yml`.
+## Автор проекта: Белова Ольга
