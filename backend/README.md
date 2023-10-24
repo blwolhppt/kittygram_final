@@ -1,51 +1,32 @@
-### Как запустить проект:
+# Kittygram — социальная сеть для обмена фотографиями любимых питомцев.
 
-Клонировать репозиторий и перейти в него в командной строке:
+## Ссылка на соцсеть Kittygram: https://blwol.sytes.net/
 
+## Стек проекта:
+
+- Python 3.9
+- Django
+- Gunicorn
+- Nginx
+- Docker
+- Django REST Framework
+
+## Запуск проекта:
+- Клонируем репозиторий:
+```angular2html
+git clone git@github.com:blwolhppt/kittygram_final.git
 ```
-git clone https://github.com/yandex-praktikum/kittygram_backend.git
+- Запускаем:
+```angular2html
+sudo docker compose -f docker-compose.production.yml up
 ```
+- Выполняем сбор статики и миграции:
+```angular2html
+sudo docker compose -f docker-compose.production.yml exec backend python manage.py migrate
 
-```
-cd kittygram_backend
-```
+sudo docker compose -f docker-compose.production.yml exec backend python manage.py collectstatic
 
-Cоздать и активировать виртуальное окружение:
-
-```
-python3 -m venv env
-```
-
-* Если у вас Linux/macOS
-
-    ```
-    source env/bin/activate
-    ```
-
-* Если у вас windows
-
-    ```
-    source env/scripts/activate
-    ```
-
-```
-python3 -m pip install --upgrade pip
+sudo docker compose -f docker-compose.production.yml exec backend cp -r /app/collected_static/. /static/static/
 ```
 
-Установить зависимости из файла requirements.txt:
-
-```
-pip install -r requirements.txt
-```
-
-Выполнить миграции:
-
-```
-python3 manage.py migrate
-```
-
-Запустить проект:
-
-```
-python3 manage.py runserver
-```
+## Автор проекта: Белова Ольга
